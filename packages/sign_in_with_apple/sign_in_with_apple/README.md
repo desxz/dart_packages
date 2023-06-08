@@ -11,6 +11,7 @@ Supports login via an Apple ID, as well as retrieving credentials saved in the u
 - iOS
 - macOS
 - Android
+- Web
 
 ## Example Usage
 
@@ -137,6 +138,13 @@ You can find out if you are already using the new embedding by looking into your
 
 In case you are not yet using Android V2 Embedding, please first upgrade your app using the following guide: https://github.com/flutter/flutter/wiki/Upgrading-pre-1.12-Android-projects
 
+#### `launchMode`
+
+To ensure that deep links from the login web page (shown in a Chrome Custom Tab) back to the app still work, your app must use `launchMode` `singleTask` or `singleTop`
+  - When using `singleTask` the Chrome Custom Tab persists across app switches from within Android's app switcher, but will be dismissed when the app is launched anew from the home screen icon / app gallery
+  - With launch mode `singleTop` the Chrome Custom Tab stays present both after using the app switcher or launching the app anew via its icon
+  - If you change your app's `launchMode` be sure to test any other third-party integrations that might be affected by this (e.g. deep links)
+
 ### Web
 
 For web support you need to add the follow script import to your `index.html`'s `<head>` tag:
@@ -145,7 +153,7 @@ For web support you need to add the follow script import to your `index.html`'s 
 <script type="text/javascript" src="https://appleid.cdn-apple.com/appleauth/static/jsapi/appleid/1/en_US/appleid.auth.js"></script>
 ```
 
-(We haven't found a way to only laod this on demand, as the script seemingly inits itself on page load.)
+(We haven't found a way to only load this on demand, as the script seemingly inits itself on page load.)
 
 Then in the service's configuration in Apple's developer portal add the domains that host your page both in `Domains and Subdomains` as well as `Returns URLs`.  
 The former is needed so you can open the flow from the web page, while the latter is used to post the final credentials back from the pop-up to the opening page. (If you omit this, the flow will just silently be stuck in the last step.)
@@ -181,7 +189,7 @@ In your `android/app/src/main/AndroidManifest.xml` inside `<application>` add
 </activity>
 ```
 
-On the Sign in with Apple callback on your sever (specified in `WebAuthenticationOptions.redirectUri`), redirect safely back to your Android app using the following URL:
+On the Sign in with Apple callback on your server (specified in `WebAuthenticationOptions.redirectUri`), redirect safely back to your Android app using the following URL:
 
 ```
 intent://callback?${PARAMETERS FROM CALLBACK BODY}#Intent;package=YOUR.PACKAGE.IDENTIFIER;scheme=signinwithapple;end

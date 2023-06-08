@@ -1,14 +1,31 @@
+## 4.3.0
+
+- Android: Fixes an issue where the Chrome Custom Tab would disappear when the user "left" the app (e.g. using the app switcher) ([#162](https://github.com/aboutyou/dart_packages/issues/162))
+  - Beware that your app's `launchMode` affects the specific behavior of the Chrome Custom Tab. For more information see the README.
+
+## 4.2.0
+
+- Remove `jcenter` repository for the Android package
+
+## 4.1.0
+
+- Add support for `transferred` credential state (Xcode 13.3.1 support) 
+
+## 4.0.0
+
+- Upgrade Kotlin version to `1.6.0`
+
 ## 3.3.0
 
 - Switch to `sign_in_with_apple_platform_interface` in conjunction with the addition of web support
 
 ## 3.2.0
 
-- Fix building macOS application with XCode 13 and macOS Big Sur
+- Fix building macOS application with Xcode 13 and macOS Big Sur
 
 ## 3.1.0
 
-- Add support for XCode 13
+- Add support for Xcode 13
 
 ## 3.0.0
 

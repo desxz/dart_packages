@@ -31,7 +31,7 @@ class SignInWithApple {
 
   /// Requests an Apple ID credential.
   ///
-  /// Shows the native UI on Apple's platform and a Chrome Custom Tab on Android.
+  /// Shows the native UI on Apple's platform, a Chrome Custom Tab on Android, and a popup on Websites.
   ///
   /// The returned [AuthorizationCredentialAppleID]'s `authorizationCode` should then be used to validate the token with Apple's servers and
   /// create a session in your system.
@@ -43,7 +43,7 @@ class SignInWithApple {
   /// The returned Future will resolve in all cases on iOS and macOS, either with an exception if Sign in with Apple is not available,
   /// or as soon as the native UI goes away (either due cancellation or the completion of the authorization).
   ///
-  /// On Android the returned Future will never resolve in case the user closes the Chrome Custom Tab without finsihing the authentication flow.
+  /// On Android the returned Future will never resolve in case the user closes the Chrome Custom Tab without finishing the authentication flow.
   /// Any previous Future would be rejected if the [getAppleIDCredential] is called again, while an earlier one is still pending.
   ///
   /// Throws an [SignInWithAppleException] in case there was any error retrieving the credential.
@@ -56,7 +56,7 @@ class SignInWithApple {
 
     /// Optional parameters for web-based authentication flows on non-Apple platforms
     ///
-    /// This parameter is required on Android.
+    /// This parameter is required on Android and on the Web.
     WebAuthenticationOptions? webAuthenticationOptions,
 
     /// Optional string which, if set, will be be embedded in the resulting `identityToken` field on the [AuthorizationCredentialAppleID].

@@ -17,7 +17,7 @@ import 'method_channel_sign_in_with_apple.dart';
 
 /// The interface that implementations of `sign_in_with_apple` must implement.
 ///
-/// Platform implementations should extend this class rather than implement it as `url_launcher`
+/// Platform implementations should extend this class rather than implement it as `sign_in_with_apple`
 /// does not consider newly added methods to be breaking changes. Extending this class
 /// (using `extends`) ensures that the subclass will get the default implementation, while
 /// platform implementations that `implements` this interface will be broken by newly added
@@ -53,7 +53,8 @@ abstract class SignInWithApplePlatform extends PlatformInterface {
     String? state,
   }) async {
     throw UnimplementedError(
-        'getAppleIDCredential() has not been implemented.');
+      'getAppleIDCredential() has not been implemented.',
+    );
   }
 
   Future<CredentialState> getCredentialState(
@@ -64,6 +65,7 @@ abstract class SignInWithApplePlatform extends PlatformInterface {
 
   Future<AuthorizationCredentialPassword> getKeychainCredential() async {
     throw UnimplementedError(
-        'getKeychainCredential() has not been implemented.');
+      'getKeychainCredential() has not been implemented.',
+    );
   }
 }
